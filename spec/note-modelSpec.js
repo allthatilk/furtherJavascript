@@ -1,13 +1,13 @@
-function noteInstantiatesWithString() {
-  var note = new Note("this is a string")
-  assert.isTrue(note.text === "this is a string")
-}
+"use strict"
 
-noteInstantiatesWithString()
+test({
+  noteInstantiatesWithString: function() {
+    var note = new Note("this is a string")
+    assert.isEqual(note.text, "this is a string")
+  },
 
-function readTextMethod() {
-  var note = new Note("string string string")
-  assert.isTrue(note.readText() === "string string string")
-}
-
-readTextMethod()
+  readTextMethod: function() {
+    var note = new Note("string string string")
+    assert.isEqual(note.readText(), "string string string")
+  }
+})

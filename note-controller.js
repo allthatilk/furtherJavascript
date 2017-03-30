@@ -1,26 +1,30 @@
-'strict mode'
-
-;(function(exports) {
-  function changeText(string) {
-  var text = document.getElementById("app")
-  console.log(text)
-  text.innerHTML = string
-  }
-  exports.changeText = changeText
-})(this)
-
-changeText("Howdy")
-
+"use strict"
 
 ;(function(exports) {
   function NoteController(listModel) {
     this.listModel = listModel
   }
 
-  NoteController.prototype.getHTMLList = function(htmlList) {
-    changeText(htmlList)
+  NoteController.prototype.addNoteToList = function(text) {
+    this.listModel.storeNote(text)
+  }
+
+  NoteController.prototype.getHTMLList = function(
+    view = new View(this.listModel)
+  ) {
+    var view = view
+    var htmlList = view.htmlListOutput()
+    this.changeText(htmlList)
+  }
+
+  NoteController.prototype.changeText = function(
+    string, element = document.getElementById("app") 
+  ) {
+    var text = element
+    console.log(text)
+    text.innerHTML = string
   }
 
   exports.NoteController = NoteController
-  
+
 })(this)

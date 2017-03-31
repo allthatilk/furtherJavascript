@@ -18,10 +18,9 @@
   }
 
   NoteController.prototype.changeText = function(
-    string, element = document.getElementById("app") 
+    string, element = document.getElementById("app")
   ) {
     var text = element
-    console.log(text)
     text.innerHTML = string
   }
 

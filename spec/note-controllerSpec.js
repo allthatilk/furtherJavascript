@@ -16,13 +16,13 @@ test ({
     var controller = new NoteController(list)
 
     controller.changeText(
-                "<ul><li><div></div></li></ul>",
-                fakeElement
+      "<ul><li><div></div></li></ul>",
+      fakeElement
     )
 
     assert.isEqual(
-            fakeElement.innerHTML,
-            "<ul><li><div></div></li></ul>"
+      fakeElement.innerHTML,
+      "<ul><li><div></div></li></ul>"
     )
   }
 })

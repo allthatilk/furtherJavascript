@@ -9,10 +9,8 @@
     this.listModel.storeNote(text)
   }
 
-  NoteController.prototype.getHTMLList = function(
-    view = new View(this.listModel)
-  ) {
-    var view = view
+  NoteController.prototype.getHTMLList = function() {
+    var view = new View(this.listModel)
     var htmlList = view.htmlListOutput()
     this.changeText(htmlList)
   }

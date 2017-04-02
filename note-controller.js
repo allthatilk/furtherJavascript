@@ -9,10 +9,10 @@
     this.listModel.storeNote(text)
   }
 
-  NoteController.prototype.getHTMLList = function() {
+  NoteController.prototype.getHTMLList = function(element = document.getElementById("app")) {
     var view = new View(this.listModel)
     var htmlList = view.htmlListOutput()
-    this.changeText(htmlList)
+    this.changeText(htmlList, element)
   }
 
   NoteController.prototype.getSingleNoteView = function(noteid) {
@@ -37,6 +37,20 @@
     element = document.getElementById("app")
   ) {
     this.changeText(this.getSingleNoteView(noteid), element)
+  }
+
+  NoteController.prototype.changeURLForCurrentNote = function() {
+    window.addEventListener("hashchange", this.showCurrentNote)
+  }
+
+  NoteController.prototype.interceptSumbitEvent = function() {
+    var that = this
+    window.addEventListener("submit", function(submitEvent) {
+      submitEvent.preventDefault()
+      var newNote = submitEvent.path[0][0].value
+      that.addNoteToList(newNote)
+      that.getHTMLList()
+    })
   }
 
   exports.NoteController = NoteController

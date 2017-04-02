@@ -7,7 +7,7 @@ var assert = {
         "Assertion failed: " + assertionToCheck + " is not truthy"
       )
     } else {
-      console.log(".")
+      console.log("%c.", "color: #bada55")
     }
   },
 
@@ -17,7 +17,7 @@ var assert = {
         "Expected " + expected + " but got " + actual
       )
     } else {
-      console.log(".")
+      console.log("%c.", "color: #bada55")
     }
   }
 }

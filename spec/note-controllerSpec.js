@@ -9,20 +9,24 @@ test ({
 
   innerHTMLContainsHtmlList: function() {
     function fakeElement() {
-      this.innerHTML = " "
+      this.innerHTML = "cheese"
     }
 
     var list = new List()
     var controller = new NoteController(list)
 
-    controller.changeText(
-      "<ul><li><div></div></li></ul>",
-      fakeElement
-    )
+    controller.changeText("sandwiches", fakeElement)
+    assert.isEqual(fakeElement.innerHTML,"sandwiches")
+  },
 
-    assert.isEqual(
-      fakeElement.innerHTML,
-      "<ul><li><div></div></li></ul>"
-    )
+  loadsContentForSingleNotePage: function() {
+    function fakeElement() {
+      this.innerHTML = "pizza"
+    }
+    var list = new List()
+    list.storeNote("new note")
+    var controller = new NoteController(list)
+    controller.showCurrentNote(0, fakeElement)
+    assert.isTrue(fakeElement.innerHTML, "<ul><li>new note</li></ul>")
   }
 })

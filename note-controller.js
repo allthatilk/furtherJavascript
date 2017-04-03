@@ -38,8 +38,6 @@
     noteid = this.noteidFromURL(),
     element = document.getElementById("app")
   ) {
-    console.log(this) // for some reason 'this' is in the global scope
-    // when the eventlistener kicks in...
     this.changeText(this.getSingleNoteView(noteid), element)
   }
 

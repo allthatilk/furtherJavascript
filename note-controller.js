@@ -48,7 +48,7 @@
     })
   }
 
-  NoteController.prototype.interceptSumbitEvent = function() {
+  NoteController.prototype.interceptSubmitEvent = function() {
     var that = this
     window.addEventListener("submit", function(submitEvent) {
       submitEvent.preventDefault()

@@ -9,7 +9,9 @@
     this.listModel.storeNote(text)
   }
 
-  NoteController.prototype.getHTMLList = function(element = document.getElementById("app")) {
+  NoteController.prototype.getHTMLList = function(
+    element = document.getElementById("app")
+  ) {
     var view = new View(this.listModel)
     var htmlList = view.htmlListOutput()
     this.changeText(htmlList, element)
@@ -29,18 +31,23 @@
   }
 
   NoteController.prototype.noteidFromURL = function() {
-    return window.location.hash.split("#note/")[1]
+    return window.location.href.split("#note/")[1]
   }
 
   NoteController.prototype.showCurrentNote = function(
     noteid = this.noteidFromURL(),
     element = document.getElementById("app")
   ) {
+    console.log(this) // for some reason 'this' is in the global scope
+    // when the eventlistener kicks in...
     this.changeText(this.getSingleNoteView(noteid), element)
   }
 
   NoteController.prototype.changeURLForCurrentNote = function() {
-    window.addEventListener("hashchange", this.showCurrentNote)
+    var that = this
+    window.addEventListener("hashchange", function() {
+      that.showCurrentNote()
+    })
   }
 
   NoteController.prototype.interceptSumbitEvent = function() {
